@@ -1,58 +1,14 @@
-const progress = document.getElementById('progress');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-const circles = document.querySelectorAll('.circle');
+const eyes = document.querySelectorAll('.eye-roll');
 
-let currentActive = 1;
-
-prev.addEventListener('click', () => {
-	currentActive--;
-	
-	// keep it withing boundaries
-	if(currentActive < 1) {
-		currentActive = 1;
-	}
-	
-	update();
-});
-
-next.addEventListener('click', () => {
-	currentActive++;
-	
-	// keep it withing boundaries
-	if(currentActive > circles.length) {
-		currentActive = circles.length;
-	}
-	
-	update();
-});
-
-function update() {
-	// set and remove active class dependent of the currentActive index
-	circles.forEach((circle, idx) => {
-		if(idx < currentActive) {
-			circle.classList.add('active');
-		} else {
-			circle.classList.remove('active');
-		}
+window.addEventListener('mousemove', (e) => {
+	eyes.forEach(eye => {
+		const x = eye.getBoundingClientRect().left + (eye.clientWidth / 2);
+		const y = eye.getBoundingClientRect().top + (eye.clientHeight / 2);
+		const radian = Math.atan2(e.pageX - x, e.pageY - y);
+		const rot = (radian * (180 / Math.PI) * -1) + 90;
+		eye.style.transform = `rotate(${rot}deg)`;
+		
+		console.log(rot);
 	});
-	
-	// get all the 'active' circles
-	const actives = document.querySelectorAll('.active');
-	
-	// get the % width for the progress bar
-	// remove one from actives and circles in order to have steps like: 0%, 50%, 100%
-	progress.style.width = `${(actives.length - 1) / (circles.length - 1) * 100}%`;
-	
-	if(currentActive === 1) {
-		// hide prev
-		prev.disabled = true;
-	} else if (currentActive === circles.length) {
-		// hide next
-		next.disabled = true;
-	} else {
-		// show prev and next
-		prev.disabled = false;
-		next.disabled = false;
-	}
-}
+});
+

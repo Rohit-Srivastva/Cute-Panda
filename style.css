@@ -5,92 +5,87 @@
 }
 
 body {
-	background-color: #F6F7FB;
-	font-family: 'Muli', sans-serif;
+	background-color: #fafafa;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
-	margin: 0
+	height: 100vh;
+	margin: 0;
 }
 
-.container {
-	text-align: center;
-}
-
-.progress-container {
-	display: flex;
-	justify-content: space-between;
-	position: relative;
-	margin-bottom: 30px;
-	max-width: 100%;
-	width: 350px;
-}
-
-.progress {
-	background-color: #3498db;
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	height: 4px;
-	width: 0%;
-	z-index: -1;
-	transition: .4s ease;
-}
-
-.progress-container::before {
-	content: ' ';
-	background-color: #e0e0e0;
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	height: 4px;
-	width: 100%;
-	z-index: -1;
-}
-
-.circle {
+.panda {
 	background-color: #fff;
 	border-radius: 50%;
-	color: #999;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 3px solid #e0e0e0;
-	font-size: 14px;
-	height: 30px;
-	width: 30px;
-	transition: .4s ease;
+	position: relative;
+	height: 170px;
+	width: 170px;
 }
 
-.circle.active {
-	border-color: #3498db;
-	color: #111;
+.panda .ear {
+	background-color: #000;
+	border-radius: 50%;
+	position: absolute;
+	top: 5px;
+	height: 50px;
+	width: 50px;
+	z-index: -1;
 }
 
-.btn {
-	background-color: #3498db;
-	border: 0;
-	border-radius: 6px;
-	color: #fff;
-	cursor: pointer;
-	font-family: inherit;
-	font-size: 14px;
-	padding: 8px 30px;
-	margin: 5px;
+.panda .ear.left {
+	left: 0;
 }
 
-.btn:active {
-	transform: scale(0.98);
+.panda .ear.right {
+	right: 0;
 }
 
-.btn:disabled {
-	background-color: #e0e0e0;
-	cursor: not-allowed;
+.panda .eye {
+	background-color: #000;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	height: 50px;
+	width: 40px;
 }
 
-.btn:focus {
-	outline: none;
+.panda .eye.left {
+	border-radius: 100% 60% 80% 60%;	
+	transform: translateX(calc(-50% - 35px));
+}
+
+.panda .eye.right {
+	border-radius: 60% 100% 60% 80%;	
+	transform: translateX(calc(-50% + 35px));
+}
+
+.panda .eye .eye-roll {
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	height: 12px;
+	width: 12px;
+	transform-origin: center left;
+}
+
+.panda .nose {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.panda .mouth {
+	background: transparent;
+	border-radius: 0 0 50% 50%;
+	border: 2px solid transparent;
+	border-bottom: 2px solid #000;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%);
+	height: 50px;
+	width: 50px;
 }
